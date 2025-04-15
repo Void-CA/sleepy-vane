@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hora Actual</title>
+  <style>
+
+    body {
+      font-family: 'Pacifico', cursive;
+      text-align: center;
+      background-color: #1a1a2e;
+      color: #f0f8ff;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('./lunas.jpg');
+      background-size: 150px;
+      background-repeat: repeat;
+      opacity: 0.15; /* controla la traslucidez */
+      z-index: -1;
+    }
+
+    h1 {
+      margin-top: 20px;
+        font-size: 2.5rem;
+    }
+
+    #clock {
+      font-size: 2.5rem;
+      margin-top: 20px;
+    }
+
+    img {
+      margin-top: 20px;
+      width: 300px;
+      height: auto;
+    }
+    
+    p {
+        font-size: 2rem;
+        margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ando con sueño amor</h1>
+  <p>Vámonos a dormir amor</p>
+  <div id="clock">Cargando hora...</div>
+  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGszYjFoc2kxYmdtb3QyaXI5Y2x6eWlmZHh6djExNjU3NmpxM2RqNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uk4Va5MkRp2bfkOk6f/giphy.gif" alt="GIF de dormir">
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      const formattedHours = hours % 12 || 12;
+      const formattedMinutes = minutes.toString().padStart(2, '0');
+      const formattedSeconds = seconds.toString().padStart(2, '0');
+      const timeString = `${formattedHours}:${formattedMinutes}:${formattedSeconds} ${ampm}`;
+      document.getElementById('clock').textContent = `Que ya son las ${timeString}`;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
